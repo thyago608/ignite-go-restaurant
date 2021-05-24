@@ -7,13 +7,11 @@ interface Props {
     children: ReactNode;
 }
 
-export function Modal({ isOpen, children }: Props) {
-    const [modalStatus, setModalStatus] = useState(isOpen);
-
+export function Modal({ isOpen, setIsOpen, children }: Props) {
     return (
         <ReactModal
-            isOpen={modalStatus}
-            onRequestClose={() => { }}
+            isOpen={isOpen}
+            onRequestClose={setIsOpen}
             ariaHideApp={false}
             style={{
                 content: {

@@ -1,3 +1,28 @@
 {
-  "foods": []
+  "foods": [
+    {
+      "name": "Moda italiana",
+      "description": "Macarrão com verdura",
+      "price": "19.90",
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
+      "available": true,
+      "id": 1
+    },
+    {
+      "name": "iajsijaij",
+      "description": "ijasijaijs",
+      "price": "aijsijaisj",
+      "image": "aisjaisj",
+      "available": true,
+      "id": 2
+    },
+    {
+      "name": "uahsuhashua",
+      "description": "9ijajiajs",
+      "price": "1928",
+      "image": "aushuahsu",
+      "available": true,
+      "id": 3
+    }
+  ]
 }

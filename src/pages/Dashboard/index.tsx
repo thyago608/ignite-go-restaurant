@@ -15,6 +15,8 @@ export interface FoodProps {
     image: string;
 }
 
+export type newFoodProps = Omit<FoodProps, "id" | "available">
+
 export function Dashboard() {
     const [foods, setFoods] = useState<FoodProps[]>([]);
     const [editingFood, setEditingFood] = useState<FoodProps>({} as FoodProps);
@@ -36,7 +38,11 @@ export function Dashboard() {
     }
 
 
-    async function handleAddFood(food: FoodProps): Promise<void> {
+    function handleAddFood(food: newFoodProps) {
+        AddFood(food);
+    }
+
+    async function AddFood(food: newFoodProps): Promise<void> {
         try {
             const response = await api.post('/foods', {
                 ...food,
@@ -48,7 +54,6 @@ export function Dashboard() {
             console.log(e);
         }
     }
-
 
     function toogleModal() {
         setModalOpen(prevState => !prevState);
@@ -69,7 +74,7 @@ export function Dashboard() {
             <ModalAddFood
                 isOpen={modalOpen}
                 setIsOpen={toogleModal}
-                handleAddFood={() => handleAddFood}
+                handleAddFood={handleAddFood}
             />
             <FoodsContainer data-testid="foods-list">
                 {foods &&
@@ -84,5 +89,4 @@ export function Dashboard() {
             </FoodsContainer>
         </>
     );
-
 }
