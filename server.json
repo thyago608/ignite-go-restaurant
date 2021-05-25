@@ -1,26 +1,26 @@
 {
   "foods": [
     {
-      "name": "Moda italiana",
-      "description": "Macarrão com verdura",
+      "name": "Macarrão com frango",
+      "description": "Macarrão com verduras e fatias de frango grelhado",
       "price": "19.90",
-      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
       "available": true,
       "id": 1
     },
     {
-      "name": "iajsijaij",
-      "description": "ijasijaijs",
-      "price": "aijsijaisj",
-      "image": "aisjaisj",
+      "name": "Macarronada de pimentão",
+      "description": "Macarronada com fatias de pimentão",
+      "price": "20.47",
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
       "available": true,
       "id": 2
     },
     {
-      "name": "uahsuhashua",
-      "description": "9ijajiajs",
-      "price": "1928",
-      "image": "aushuahsu",
+      "name": "Moda de Camarão",
+      "description": "Camarão grelhado e macarronada",
+      "price": "29.30",
+      "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
       "available": true,
       "id": 3
     }

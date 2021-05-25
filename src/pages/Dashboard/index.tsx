@@ -1,21 +1,13 @@
 import { useState, useEffect } from 'react';
-import { FoodsContainer } from './styles';
 
+import { FoodsContainer } from './styles';
 import { Header } from '../../components/Header';
 import { Food } from '../../components/Food';
-import api from '../../services/api';
 import { ModalAddFood } from '../../components/ModalAddFood';
 
-export interface FoodProps {
-    id: number;
-    name: string;
-    description: string;
-    price: string;
-    available: boolean;
-    image: string;
-}
+import { FoodProps, newFoodProps } from '../../assets/interfaces';
 
-export type newFoodProps = Omit<FoodProps, "id" | "available">
+import api from '../../services/api';
 
 export function Dashboard() {
     const [foods, setFoods] = useState<FoodProps[]>([]);
@@ -29,6 +21,7 @@ export function Dashboard() {
         setEditModalOpen(true);
     }
 
+    //Função de DELETAR uma Food
     async function handleDeleteFood(id: number): Promise<void> {
         await api.delete(`/foods/${id}`);
 
@@ -38,10 +31,12 @@ export function Dashboard() {
     }
 
 
+    //Função de CRIAR uma Food
     function handleAddFood(food: newFoodProps) {
         AddFood(food);
     }
 
+    //Função auxiliar de criar uma food
     async function AddFood(food: newFoodProps): Promise<void> {
         try {
             const response = await api.post('/foods', {
@@ -55,9 +50,12 @@ export function Dashboard() {
         }
     }
 
+    //Função que ABRE e FECHA o Modal
     function toogleModal() {
         setModalOpen(prevState => !prevState);
     }
+
+    //Realizando o carregamento de foods da api
     useEffect(() => {
         async function loadingFood() {
             const { data } = await api.get('/foods');

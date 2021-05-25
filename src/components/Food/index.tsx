@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FoodsContainer } from './styles';
+import { FoodProps } from '../../assets/interfaces';
 import { FiEdit3, FiTrash } from 'react-icons/fi';
-import { FoodProps } from '../../pages/Dashboard';
+import { Container } from './styles';
 import api from '../../services/api';
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 export function Food({ food, handleDelete, handleEditFood }: Props) {
     const [isAvailable, setIsAvailable] = useState(food.available);
 
+    //Atualização da comida
     async function toggleAvailable() {
         await api.put(`/foods/${food.id}`, {
             ...food,
@@ -22,7 +23,7 @@ export function Food({ food, handleDelete, handleEditFood }: Props) {
     }
 
     return (
-        <FoodsContainer available={isAvailable}>
+        <Container available={isAvailable}>
             <header>
                 <img src={food.image} alt={food.name} />
             </header>
@@ -38,7 +39,7 @@ export function Food({ food, handleDelete, handleEditFood }: Props) {
                     <button
                         type="button"
                         className="icon"
-                        onClick={handleEditFood}
+                        onClick={() => { }}
                         data-testid={`edit-food-${food.id}`}
                     >
                         <FiEdit3 size={20} />
@@ -69,6 +70,6 @@ export function Food({ food, handleDelete, handleEditFood }: Props) {
                     </label>
                 </div>
             </section>
-        </FoodsContainer>
+        </Container>
     );
 }

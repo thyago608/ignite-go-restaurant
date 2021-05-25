@@ -1,4 +1,4 @@
-import { newFoodProps } from '../../pages/Dashboard';
+import { newFoodProps } from '../../assets/interfaces';
 import { useRef, useState } from 'react';
 import { FiCheckSquare } from 'react-icons/fi';
 import { Form } from './styles';
@@ -26,6 +26,10 @@ export function ModalAddFood({ isOpen, setIsOpen, handleAddFood }: Props) {
             image,
         });
 
+        ClearModalFieldCleaning();
+    }
+
+    function ClearModalFieldCleaning() {
         setIsOpen();
 
         setName('');
@@ -35,7 +39,7 @@ export function ModalAddFood({ isOpen, setIsOpen, handleAddFood }: Props) {
     }
 
     return (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Modal isOpen={isOpen} setIsOpen={ClearModalFieldCleaning}>
             <Form ref={formRef} onSubmit={handleSubmit}>
                 <h1>Novo Prato</h1>
                 <Input
