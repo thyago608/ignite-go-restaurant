@@ -4,6 +4,7 @@ import { FoodsContainer } from './styles';
 import { Header } from '../../components/Header';
 import { Food } from '../../components/Food';
 import { ModalAddFood } from '../../components/ModalAddFood';
+import { ModalEditFood } from '../../components/ModalEditFood';
 
 import { FoodProps, newFoodProps } from '../../assets/interfaces';
 
@@ -15,11 +16,6 @@ export function Dashboard() {
     const [modalOpen, setModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
-
-    function handleEditFood(food: FoodProps) {
-        setEditingFood(food);
-        setEditModalOpen(true);
-    }
 
     //Função de DELETAR uma Food
     async function handleDeleteFood(id: number): Promise<void> {
@@ -50,9 +46,31 @@ export function Dashboard() {
         }
     }
 
-    //Função que ABRE e FECHA o Modal
+    //Função que ABRE e FECHA o Modal de Criação Food
     function toogleModal() {
         setModalOpen(prevState => !prevState);
+    }
+
+    //Função que ABRE e FECHA o Modal de Editar Food
+    function toogleEditModal() {
+        setEditModalOpen(prevState => !prevState);
+    }
+
+    async function handleUpdateFood(food: FoodProps) {
+        try {
+            const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
+                ...editingFood, ...food
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    //Adicionando o Food a edição
+    function handleEditFood(food: FoodProps) {
+        setEditingFood(food);
+        setEditModalOpen(true);
     }
 
     //Realizando o carregamento de foods da api

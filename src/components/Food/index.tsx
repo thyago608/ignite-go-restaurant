@@ -39,7 +39,7 @@ export function Food({ food, handleDelete, handleEditFood }: Props) {
                     <button
                         type="button"
                         className="icon"
-                        onClick={() => { }}
+                        onClick={handleEditFood}
                         data-testid={`edit-food-${food.id}`}
                     >
                         <FiEdit3 size={20} />
