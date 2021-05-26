@@ -15,7 +15,7 @@ export function Dashboard() {
     const [editingFood, setEditingFood] = useState<FoodProps>({} as FoodProps);
     const [modalOpen, setModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
-
+    const [idade, setIdade] = useState(1);
 
     //Função de DELETAR uma Food
     async function handleDeleteFood(id: number): Promise<void> {
@@ -56,11 +56,16 @@ export function Dashboard() {
         setEditModalOpen(prevState => !prevState);
     }
 
-    async function handleUpdateFood(food: FoodProps) {
+    async function handleUpdateFood(food: newFoodProps): Promise<void> {
         try {
             const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
-                ...editingFood, ...food
+                ...editingFood,
+                ...food,
             });
+
+            const foodsUpdated = foods.map((food) => food.id !== foodUpdated.data.id ? food : foodUpdated.data);
+
+            setFoods(foodsUpdated);
 
         } catch (e) {
             console.log(e);
@@ -84,6 +89,7 @@ export function Dashboard() {
         loadingFood();
     }, []);
 
+
     return (
         <>
             <Header openModal={toogleModal} />
@@ -92,6 +98,14 @@ export function Dashboard() {
                 setIsOpen={toogleModal}
                 handleAddFood={handleAddFood}
             />
+
+            <ModalEditFood
+                isOpen={editModalOpen}
+                setIsOpen={toogleEditModal}
+                editingFood={editingFood}
+                handleUpdateFood={handleUpdateFood}
+            />
+
             <FoodsContainer data-testid="foods-list">
                 {foods &&
                     foods.map((food: FoodProps) => (
