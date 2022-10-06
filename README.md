@@ -1,6 +1,6 @@
 ## Sobre
 
-O projeto **dashgo** é uma plataforma de controle de pedidos de um restaurante. O mesmo foi desenvolvido dentro da programa de aceleração de carreira **Ignite** da **Rocketseat**. 
+O projeto **Ignite Go Restaurant** é uma plataforma de controle de pedidos de um restaurante. O mesmo foi desenvolvido dentro da programa de aceleração de carreira **Ignite** da **Rocketseat**. 
 
 ---
 
